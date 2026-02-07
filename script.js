@@ -204,6 +204,24 @@ if (testimonialsSlider) {
     }
 }
 
+// Preferred Location Handler
+const preferredLocationSelect = document.getElementById('preferred-location');
+const customLocationRow = document.getElementById('custom-location-row');
+const customLocationInput = document.getElementById('custom-location');
+
+if (preferredLocationSelect) {
+    preferredLocationSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'others') {
+            customLocationRow.style.display = 'flex';
+            customLocationInput.setAttribute('required', 'required');
+        } else {
+            customLocationRow.style.display = 'none';
+            customLocationInput.removeAttribute('required');
+            customLocationInput.value = '';
+        }
+    });
+}
+
 // Unified Form Validation and Submission
 const unifiedForm = document.getElementById('unified-form');
 const formMessage = document.getElementById('form-message');
@@ -237,6 +255,8 @@ if (unifiedForm) {
         const eventType = document.getElementById('event-type').value;
         const eventDate = document.getElementById('event-date').value;
         const venue = document.getElementById('venue').value.trim();
+        const preferredLocation = document.getElementById('preferred-location').value;
+        const customLocation = document.getElementById('custom-location').value.trim();
         const guests = document.getElementById('guests').value;
         const eventTime = document.getElementById('event-time').value;
         const details = document.getElementById('details').value.trim();
@@ -279,6 +299,16 @@ if (unifiedForm) {
             return;
         }
 
+        if (!preferredLocation) {
+            showFormMessage('Please select a preferred location.', 'error');
+            return;
+        }
+
+        if (preferredLocation === 'others' && !customLocation) {
+            showFormMessage('Please enter your preferred location.', 'error');
+            return;
+        }
+
         if (!venue) {
             showFormMessage('Please enter a venue.', 'error');
             return;
@@ -299,6 +329,9 @@ if (unifiedForm) {
             return;
         }
 
+        // Determine final location
+        const finalLocation = preferredLocation === 'others' ? customLocation : preferredLocation;
+
         // Form data
         const formData = {
             name,
@@ -306,6 +339,7 @@ if (unifiedForm) {
             phone,
             eventType,
             eventDate,
+            preferredLocation: finalLocation,
             eventTime,
             venue,
             guests: parseInt(guests),
