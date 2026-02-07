@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Write a Review - Eventra Occasionz">
+    <title>Write a Review - Eventra Occasionz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Menu Button -->
+    <button class="menu-button" id="menuButton">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Side Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Side Menu -->
+    <nav class="side-menu" id="sideMenu">
+        <button class="menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+        <div class="menu-logo">Eventra Occasionz</div>
+        <ul class="menu-list">
+            <li><a href="index.html#home" class="menu-link"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.html#events" class="menu-link"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="index.html#billing" class="menu-link"><i class="fas fa-envelope"></i> Inquiry</a></li>
+            <li><a href="index.html#contact" class="menu-link"><i class="fas fa-phone"></i> Contact</a></li>
+        </ul>
+        <div class="menu-footer">
+            <p>&copy; 2026 Eventra Occasionz</p>
+        </div>
+    </nav>
+
+    <!-- Review Hero Section -->
+    <header class="review-hero">
+        <div class="review-hero-overlay">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <i class="fas fa-star review-hero-icon"></i>
+            <h1>Share Your Experience</h1>
+            <p>We'd love to hear about your event with Eventra Occasionz</p>
+        </div>
+    </header>
+
+    <!-- Review Form Section -->
+    <section class="review-form-section">
+        <div class="container">
+            <div class="review-form-container">
+                <h2>Write Your Review</h2>
+                <p class="review-subtitle">Your feedback helps us improve and helps others make informed decisions</p>
+                
+                <form id="review-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewer-name">Your Name *</label>
+                            <input type="text" id="reviewer-name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewer-email">Email Address *</label>
+                            <input type="email" id="reviewer-email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-type-review">Event Type *</label>
+                            <select id="event-type-review" required>
+                                <option value="">Select Event Type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="destination-wedding">Destination Wedding</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="private">Private Party</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date-review">Event Date</label>
+                            <input type="date" id="event-date-review">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating *</label>
+                        <div class="star-rating" id="star-rating">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                        <input type="hidden" id="rating-value" required>
+                        <span class="rating-text" id="rating-text">Click to rate</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-title">Review Title *</label>
+                        <input type="text" id="review-title" placeholder="Sum up your experience" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-message">Your Review *</label>
+                        <textarea id="review-message" rows="6" placeholder="Tell us about your experience with Eventra Occasionz..." required></textarea>
+                        <span class="char-count"><span id="char-count">0</span>/500</span>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="display-consent" required>
+                            <span>I consent to display my review on the website</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-review-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Review
+                    </button>
+                </form>
+
+                <div id="review-message-display"></div>
+            </div>
+
+            <!-- Recent Reviews Section -->
+            <div class="recent-reviews">
+                <h3>Recent Reviews</h3>
+                <div id="recent-reviews-list">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h4>Sarah & John</h4>
+                                    <span class="review-date">Wedding - 2 weeks ago</span>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <h5>Magical Wedding Day!</h5>
+                        <p>Eventra Occasionz made our wedding day truly magical! Every detail was perfect.</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h4>Michael</h4>
+                                    <span class="review-date">Corporate Event - 1 month ago</span>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <h5>Professional and Creative</h5>
+                        <p>The best event planners we've ever worked with! Professional and creative.</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h4>Emily</h4>
+                                    <span class="review-date">Birthday Party - 3 weeks ago</span>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <h5>Amazing Birthday Party!</h5>
+                        <p>Our birthday party was absolutely amazing! Thank you for making it special.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky Buttons -->
+    <div class="sticky-buttons">
+        <a href="https://wa.me/918360126372" class="whatsapp-button" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+918360126372" class="call-button" title="Call Us"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="review.js"></script>
+</body>
+
+</html>
