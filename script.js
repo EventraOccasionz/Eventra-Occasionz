@@ -505,6 +505,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Netflix-style Video Cards - Play on Hover
+const videoCards = document.querySelectorAll('.video-card');
+
+videoCards.forEach(card => {
+    const video = card.querySelector('video');
+    
+    if (video) {
+        card.addEventListener('mouseenter', () => {
+            video.play().catch(() => {
+                // Autoplay was prevented, continue silently
+            });
+            video.style.opacity = '1';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+            video.style.opacity = '0.7';
+        });
+        
+        // Handle video end
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.play();
+        });
+    }
+});
+
+// Video Control Buttons functionality
+const videoControlBtns = document.querySelectorAll('.video-control-btn');
+videoControlBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const icon = btn.querySelector('i');
+        const title = btn.getAttribute('title');
+        
+        if (title === 'Add to My List') {
+            if (icon.classList.contains('fa-plus')) {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-check');
+                btn.style.background = '#46d369';
+                btn.style.color = '#000';
+            } else {
+                icon.classList.remove('fa-check');
+                icon.classList.add('fa-plus');
+                btn.style.background = '';
+                btn.style.color = '';
+            }
+        } else if (title === 'Like') {
+            if (icon.classList.contains('fa-thumbs-up')) {
+                icon.classList.remove('fa-thumbs-up');
+                icon.classList.add('fa-heart');
+                btn.style.color = '#e91e63';
+            } else {
+                icon.classList.remove('fa-heart');
+                icon.classList.add('fa-thumbs-up');
+                btn.style.color = '';
+            }
+        } else if (title === 'Share') {
+            // Copy current page URL to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                icon.classList.remove('fa-share');
+                icon.classList.add('fa-check');
+                setTimeout(() => {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-share');
+                }, 2000);
+            });
+        }
+    });
+});
+
 // Initialize animations on page load
 window.addEventListener('load', () => {
     animateOnScroll();
