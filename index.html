@@ -143,7 +143,7 @@
         <div class="testimonials-slider" id="testimonialsSlider">
             <div class="testimonial">
                 <p>"Eventra Occasionz made our wedding day truly magical! Every detail was perfect."</p>
-                <span>- Sarah & John, Wedding</span>
+                <span>- Priya & Rahul, Wedding</span>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -154,7 +154,7 @@
             </div>
             <div class="testimonial">
                 <p>"The best event planners we've ever worked with! Professional and creative."</p>
-                <span>- Michael, Corporate Client</span>
+                <span>-  Arjun Sharma, Corporate Client</span>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -165,7 +165,7 @@
             </div>
             <div class="testimonial">
                 <p>"Our birthday party was absolutely amazing! Thank you for making it special."</p>
-                <span>- Emily, Birthday Party</span>
+                <span>- Ananya Kapoor, Birthday Party</span>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -176,7 +176,7 @@
             </div>
             <div class="testimonial">
                 <p>"Destination wedding in Maldives was a dream come true. Highly recommend!"</p>
-                <span>- David & Lisa, Destination Wedding</span>
+                <span>- Rohan & Meera, Destination Wedding</span>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -216,7 +216,7 @@
                     <i class="fas fa-plus"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>We plan weddings across India and at destinations worldwide. Contact us to discuss your location</p>
+                    <p>We serve all across India and also specialize in destination weddings. Contact us to discuss your specific location.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -277,11 +277,24 @@
             </div>
             <div class="form-row">
                 <input type="date" id="event-date" required>
+                <select id="preferred-location" required>
+                    <option value="">Select Preferred Location</option>
+                    <option value="goa">Goa</option>
+                    <option value="himachal">Himachal Pradesh</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="form-row" id="custom-location-row" style="display: none;">
+                <input type="text" id="custom-location" placeholder="Enter Your Preferred Location">
+            </div>
+            <div class="form-row">
+                <input type="date" id="event-date" required>
                 <input type="text" id="venue" placeholder="Preferred Venue" required>
             </div>
             <div class="form-row">
                 <input type="number" id="guests" placeholder="Number of Guests" min="1" required>
-                <input type="time" id="event-time" required>
+                <input type="time" id="event-time" required placeholder="Time">
             </div>
             <textarea id="details" placeholder="Event Details" required></textarea>
             <div class="form-row checkbox-row">
@@ -360,8 +373,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Enquiry Section - Removed (merged into unified form) -->
 
     <!-- Sticky Buttons -->
     <div class="sticky-buttons">

@@ -762,6 +762,26 @@ body.menu-open {
     font-size: 1rem;
     transition: all 0.3s ease;
 }
+.inquiry-form input::placeholder,
+.inquiry-form textarea::placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+.inquiry-form input::-webkit-input-placeholder,
+.inquiry-form textarea::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+.inquiry-form input::-moz-placeholder,
+.inquiry-form textarea::-moz-placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+.inquiry-form input:-ms-input-placeholder,
+.inquiry-form textarea:-ms-input-placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
 
 .inquiry-form input:focus, .inquiry-form select:focus, .inquiry-form textarea:focus {
     outline: none;
