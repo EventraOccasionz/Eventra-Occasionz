@@ -246,7 +246,7 @@ function showFormMessage(message, type) {
 }
 
 if (unifiedForm) {
-    unifiedForm.addEventListener('submit', (e) => {
+    unifiedForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name = document.getElementById('name').value.trim();
@@ -254,24 +254,12 @@ if (unifiedForm) {
         const phone = document.getElementById('phone').value.trim();
         const eventType = document.getElementById('event-type').value;
         const eventDate = document.getElementById('event-date').value;
-        const venue = document.getElementById('venue').value.trim();
         const preferredLocation = document.getElementById('preferred-location').value;
         const customLocation = document.getElementById('custom-location').value.trim();
+        const venue = document.getElementById('venue').value.trim();
         const guests = document.getElementById('guests').value;
         const eventTime = document.getElementById('event-time').value;
         const details = document.getElementById('details').value.trim();
-        
-        // Get checkbox values
-        const services = [];
-        const catering = document.getElementById('catering');
-        const photography = document.getElementById('photography');
-        const decoration = document.getElementById('decoration');
-        const entertainment = document.getElementById('entertainment');
-        
-        if (catering && catering.checked) services.push('Catering');
-        if (photography && photography.checked) services.push('Photography');
-        if (decoration && decoration.checked) services.push('Decoration');
-        if (entertainment && entertainment.checked) services.push('Entertainment');
 
         // Validation
         if (name.length < 2) {
@@ -329,33 +317,30 @@ if (unifiedForm) {
             return;
         }
 
-        // Determine final location
-        const finalLocation = preferredLocation === 'others' ? customLocation : preferredLocation;
+        // Submit to Formspree
+        try {
+            const formData = new FormData(unifiedForm);
+            const response = await fetch(unifiedForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        // Form data
-        const formData = {
-            name,
-            email,
-            phone,
-            eventType,
-            eventDate,
-            preferredLocation: finalLocation,
-            eventTime,
-            venue,
-            guests: parseInt(guests),
-            services,
-            details,
-            submittedAt: new Date().toISOString()
-        };
-
-        // Save to localStorage
-        localStorage.setItem('unifiedInquiryFormData', JSON.stringify(formData));
-
-        // Show success message
-        showFormMessage('Thank you! Your inquiry has been submitted successfully. We will contact you soon.', 'success');
-
-        // Clear the form
-        unifiedForm.reset();
+            if (response.ok) {
+                showFormMessage('Thank you! Your inquiry has been submitted successfully. We will contact you soon.', 'success');
+                unifiedForm.reset();
+                // Hide custom location row after reset
+                if (customLocationRow) {
+                    customLocationRow.style.display = 'none';
+                }
+            } else {
+                showFormMessage('Oops! There was a problem submitting your form. Please try again.', 'error');
+            }
+        } catch (error) {
+            showFormMessage('Oops! There was a problem submitting your form. Please try again.', 'error');
+        }
     });
 }
 

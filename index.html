@@ -259,14 +259,14 @@
     <!-- Inquiry Form Section -->
     <section class="inquiry-form animate-on-scroll" id="billing">
         <h2>Plan Your Event</h2>
-        <form id="unified-form">
+        <form id="unified-form" action="https://formspree.io/f/mpqjzypk" method="POST">
             <div class="form-row">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your Email" required>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
             </div>
             <div class="form-row">
-                <input type="tel" id="phone" placeholder="Your Phone Number" required>
-                <select id="event-type" required>
+                <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+                <select id="event-type" name="event-type" required>
                     <option value="">Select Event Type</option>
                     <option value="wedding">Wedding</option>
                     <option value="birthday">Birthday Party</option>
@@ -276,7 +276,8 @@
                 </select>
             </div>
             <div class="form-row">
-                <select id="preferred-location" required>
+                <input type="date" id="event-date" name="event-date" required>
+                <select id="preferred-location" name="preferred-location" required>
                     <option value="">Select Preferred Location</option>
                     <option value="goa">Goa</option>
                     <option value="himachal">Himachal Pradesh</option>
@@ -285,22 +286,21 @@
                 </select>
             </div>
             <div class="form-row" id="custom-location-row" style="display: none;">
-                <input type="text" id="custom-location" placeholder="Enter Your Preferred Location">
+                <input type="text" id="custom-location" name="custom-location" placeholder="Enter Your Preferred Location">
             </div>
             <div class="form-row">
-                <input type="date" id="event-date" required>
-                <input type="text" id="venue" placeholder="Preferred Venue" required>
+                <input type="text" id="venue" name="venue" placeholder="Preferred Venue" required>
+                <input type="number" id="guests" name="guests" placeholder="Number of Guests" min="1" required>
             </div>
             <div class="form-row">
-                <input type="number" id="guests" placeholder="Number of Guests" min="1" required>
-                <input type="time" id="event-time" required placeholder="Time">
+                <input type="time" id="event-time" name="event-time" required>
             </div>
-            <textarea id="details" placeholder="Event Details" required></textarea>
+            <textarea id="details" name="details" placeholder="Event Details" required></textarea>
             <div class="form-row checkbox-row">
-                <label><input type="checkbox" id="catering"> Catering</label>
-                <label><input type="checkbox" id="photography"> Photography</label>
-                <label><input type="checkbox" id="decoration"> Decoration</label>
-                <label><input type="checkbox" id="entertainment"> Entertainment</label>
+                <label><input type="checkbox" id="catering" name="catering" value="yes"> Catering</label>
+                <label><input type="checkbox" id="photography" name="photography" value="yes"> Photography</label>
+                <label><input type="checkbox" id="decoration" name="decoration" value="yes"> Decoration</label>
+                <label><input type="checkbox" id="entertainment" name="entertainment" value="yes"> Entertainment</label>
             </div>
             <button type="submit" class="submit-button">Submit Inquiry</button>
         </form>
