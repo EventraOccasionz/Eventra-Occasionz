@@ -437,8 +437,63 @@ stickyButtons.forEach(button => {
     });
 });
 
-// Bottom navigation hover effects removed - no longer needed
+// Destination Cards Video on Hover and Scroll
+document.addEventListener('DOMContentLoaded', () => {
+    const destinationCards = document.querySelectorAll('.destination-card');
 
+    // Function to play video
+    function playVideo(card) {
+        const video = card.querySelector('video');
+        if (video) {
+            video.play().catch(() => {}); // Ignore play errors
+        }
+    }
+
+    // Function to pause video
+    function pauseVideo(card) {
+        const video = card.querySelector('video');
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+
+    // Hover effects for destination cards
+    destinationCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            playVideo(card);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            pauseVideo(card);
+        });
+    });
+
+    // Scroll-triggered video playback using Intersection Observer
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const card = entry.target;
+            const video = card.querySelector('video');
+            
+            if (entry.isIntersecting) {
+                // Card is in view - add class for scroll trigger
+                card.classList.add('in-view');
+                playVideo(card);
+            } else {
+                // Card is out of view - remove class and pause
+                card.classList.remove('in-view');
+                pauseVideo(card);
+            }
+        });
+    }, {
+        rootMargin: '-50px 0px',
+        threshold: 0.5
+    });
+
+    destinationCards.forEach(card => {
+        videoObserver.observe(card);
+    });
+});
 // Social media icons animation
 const socialIcons = document.querySelectorAll('.social-icon');
 socialIcons.forEach(icon => {
@@ -503,34 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
             img.classList.add('loaded');
         }
     });
-});
-
-// Netflix-style Video Cards - Play on Hover
-const videoCards = document.querySelectorAll('.video-card');
-
-videoCards.forEach(card => {
-    const video = card.querySelector('video');
-    
-    if (video) {
-        card.addEventListener('mouseenter', () => {
-            video.play().catch(() => {
-                // Autoplay was prevented, continue silently
-            });
-            video.style.opacity = '1';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            video.pause();
-            video.currentTime = 0;
-            video.style.opacity = '0.7';
-        });
-        
-        // Handle video end
-        video.addEventListener('ended', () => {
-            video.currentTime = 0;
-            video.play();
-        });
-    }
 });
 
 // Video Control Buttons functionality
