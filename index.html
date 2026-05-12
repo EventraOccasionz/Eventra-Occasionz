@@ -12,10 +12,18 @@
 </head>
 
 <body>
-    <!-- Loading Spinner -->
+     <!-- Loading Progress Screen -->
     <div class="loader" id="loader">
-        <div class="spinner"></div>
-        <p>Loading...</p>
+        <div class="loader-icons">
+            <i class="fas fa-birthday-cake"></i>
+            <i class="fas fa-bomb"></i>
+            <i class="fas fa-calendar-alt"></i>
+            <i class="fas fa-glass-cheers"></i>
+        </div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar" id="loaderProgress"></div>
+        </div>
+        <p id="loaderText">Loading 0%</p>
     </div>
 
     <!-- Back to Top Button -->
