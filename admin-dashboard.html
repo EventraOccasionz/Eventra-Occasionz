@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Dashboard - Eventra Occasionz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-dashboard">
+    <!-- Sidebar -->
+    <nav class="admin-sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#dashboard" class="active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#guests" data-section="guests"><i class="fas fa-users"></i> Guest Management</a></li>
+            <li><a href="#rsvp" data-section="rsvp"><i class="fas fa-check-circle"></i> RSVP Tracking</a></li>
+            <li><a href="#photos" data-section="photos"><i class="fas fa-images"></i> Photo Management</a></li>
+            <li><a href="#couples" data-section="couples"><i class="fas fa-heart"></i> Couple Management</a></li>
+            <li><a href="#events" data-section="events"><i class="fas fa-calendar-alt"></i> Event Management</a></li>
+            <li><a href="#website" data-section="website"><i class="fas fa-globe"></i> Website Control</a></li>
+            <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <header class="admin-header-bar">
+            <h1 id="sectionTitle">Dashboard Overview</h1>
+            <div class="admin-user">
+                <span id="adminEmail"></span>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Total Guests</h3>
+                        <p id="totalGuests">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check"></i>
+                        <h3>Attending</h3>
+                        <p id="attendingCount">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-times"></i>
+                        <h3>Not Attending</h3>
+                        <p id="notAttendingCount">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Pending</h3>
+                        <p id="pendingCount">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Guest Management Section -->
+            <section id="guests-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Guest Management</h2>
+                    <div class="section-actions">
+                        <button class="admin-btn" id="addGuestBtn"><i class="fas fa-plus"></i> Add Guest</button>
+                        <button class="admin-btn" id="bulkUploadBtn"><i class="fas fa-file-upload"></i> Bulk Upload CSV</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="guestsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>RSVP Status</th>
+                                <th>Guest Count</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guestsTableBody">
+                            <tr><td colspan="5">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- RSVP Tracking Section -->
+            <section id="rsvp-section" class="admin-section">
+                <div class="section-header">
+                    <h2>RSVP Tracking</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="attending">Attending</button>
+                        <button class="filter-btn" data-filter="not-attending">Not Attending</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="rsvpTable">
+                        <thead>
+                            <tr>
+                                <th>Guest Name</th>
+                                <th>Status</th>
+                                <th>Count</th>
+                                <th>Food Preference</th>
+                                <th>Arrival</th>
+                                <th>Departure</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rsvpTableBody">
+                            <tr><td colspan="6">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Photo Management Section -->
+            <section id="photos-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Photo Management</h2>
+                </div>
+                <div class="photo-grid" id="photoGrid">
+                    <p>Loading photos...</p>
+                </div>
+            </section>
+
+            <!-- Couple Management Section -->
+            <section id="couples-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Couple Management</h2>
+                    <button class="admin-btn" id="addCoupleBtn"><i class="fas fa-plus"></i> Add Couple</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="couplesTable">
+                        <thead>
+                            <tr>
+                                <th>Couple Name</th>
+                                <th>Event Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="couplesTableBody">
+                            <tr><td colspan="3">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Event Management Section -->
+            <section id="events-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Event Management</h2>
+                    <button class="admin-btn" id="addEventBtn"><i class="fas fa-plus"></i> Add Event</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="eventsTable">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date & Time</th>
+                                <th>Venue</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventsTableBody">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Website Control Section -->
+            <section id="website-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Website Control</h2>
+                </div>
+                <div class="website-controls">
+                    <div class="control-group">
+                        <h3>Hero Section</h3>
+                        <div class="form-row">
+                            <label>Hero Image</label>
+                            <input type="file" id="heroImage" accept="image/*">
+                        </div>
+                        <div class="form-row">
+                            <label>Hero Title</label>
+                            <input type="text" id="heroTitle" placeholder="Welcome to Eventra Occasionz">
+                        </div>
+                        <div class="form-row">
+                            <label>Hero Subtitle</label>
+                            <input type="text" id="heroSlogan" placeholder="Crafting Unforgettable Moments">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <h3>Services Section</h3>
+                        <div id="servicesList">
+                            <!-- Services will be loaded here -->
+                        </div>
+                        <button class="admin-btn" id="addServiceBtn"><i class="fas fa-plus"></i> Add Service</button>
+                    </div>
+                    <button class="admin-btn save-btn" id="saveWebsiteBtn"><i class="fas fa-save"></i> Save Changes</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Add/Edit Guest Modal -->
+    <div class="modal" id="guestModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="guestModalTitle">Add Guest</h2>
+            <form id="guestForm">
+                <input type="hidden" id="guestId">
+                <div class="form-row">
+                    <label>Guest Name</label>
+                    <input type="text" id="guestName" required>
+                </div>
+                <div class="form-row">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="guestMobile" required>
+                </div>
+                <div class="form-row">
+                    <label>Couple</label>
+                    <select id="guestCouple" required>
+                        <option value="">Select Couple</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="admin-btn cancel-btn">Cancel</button>
+                    <button type="submit" class="admin-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Couple Modal -->
+    <div class="modal" id="coupleModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="coupleModalTitle">Add Couple</h2>
+            <form id="coupleForm">
+                <input type="hidden" id="coupleId">
+                <div class="form-row">
+                    <label>Couple Name</label>
+                    <input type="text" id="coupleName" required>
+                </div>
+                <div class="form-row">
+                    <label>Event Date</label>
+                    <input type="date" id="coupleEventDate" required>
+                </div>
+                <div class="form-row">
+                    <label>Cover Image</label>
+                    <input type="file" id="coupleCoverImage" accept="image/*">
+                </div>
+                <div class="form-row">
+                    <label>Story</label>
+                    <textarea id="coupleStory" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="admin-btn cancel-btn">Cancel</button>
+                    <button type="submit" class="admin-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Event Modal -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="eventModalTitle">Add Event</h2>
+            <form id="eventForm">
+                <input type="hidden" id="eventId">
+                <div class="form-row">
+                    <label>Couple</label>
+                    <select id="eventCouple" required>
+                        <option value="">Select Couple</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Event Name</label>
+                    <input type="text" id="eventName" required>
+                </div>
+                <div class="form-row">
+                    <label>Date</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-row">
+                    <label>Time</label>
+                    <input type="time" id="eventTime" required>
+                </div>
+                <div class="form-row">
+                    <label>Venue</label>
+                    <input type="text" id="eventVenue" required>
+                </div>
+                <div class="form-row">
+                    <label>Map Link</label>
+                    <input type="url" id="eventMapLink">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="admin-btn cancel-btn">Cancel</button>
+                    <button type="submit" class="admin-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bulk Upload Modal -->
+    <div class="modal" id="bulkUploadModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Bulk Upload Guests</h2>
+            <form id="bulkUploadForm">
+                <div class="form-row">
+                    <label>Select Couple</label>
+                    <select id="bulkCouple" required>
+                        <option value="">Select Couple</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>CSV File</label>
+                    <input type="file" id="csvFile" accept=".csv" required>
+                </div>
+                <p class="help-text">CSV format: guestName,mobileNumber,guestCount,foodPreference</p>
+                <div class="form-actions">
+                    <button type="button" class="admin-btn cancel-btn">Cancel</button>
+                    <button type="submit" class="admin-btn">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="admin-dashboard.js"></script>
+</body>
+</html>
